@@ -53,7 +53,7 @@ useEffect(()=>{
 
 
 const getAllTerms =  async () => {
-    setAllTerms([]);
+
     const terms= [];
     await firestore()
    .collection('Terms')
@@ -73,7 +73,7 @@ const getAllTerms =  async () => {
 
     })
 
-
+    setAllTerms([]);
     setAllTerms(terms);
     if (loading) setLoading(false);
    }).catch(e =>console.log(e))
@@ -135,12 +135,7 @@ const getAllTerms =  async () => {
             <Text style={{color:'#AD40AF'}}>See all</Text>
         </TouchableOpacity>
         </View>
-       {/* <CustomCarousel /> */}
-  
-   {/*     {terms.map
-       (item=>(
-       <ListItem key={item.id} name={item.name} description={item.description} />
-       ))} */}
+
 
           
 

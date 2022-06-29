@@ -1,8 +1,10 @@
-import React, { useEffect,useState } from 'react';
+import React, {useEffect,useRef,createRef,useState } from 'react';
 import { View, Text,FlatList,StyleSheet ,StatusBar,TouchableOpacity} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+import { ActivityIndicator } from 'react-native';
+import { event } from 'react-native-reanimated';
 
 
 const TermsList = ({ terms , search, navigation }) => {
@@ -10,12 +12,17 @@ const TermsList = ({ terms , search, navigation }) => {
    
     const[bookmarked,setBookmarked] = useState([]);
     const [loading,setLoading] = useState(true);
-  
+
+    const [scrollPosition,setScrollPosition]= useState(0);
+    const [position,setPosition] = useState(0);
+
+ 
 
     
     useEffect(()=>{
       getBookmarkedTerms();
-      navigation.addListener('focus', () => { setLoading(!loading)});
+      navigation.addListener('focus', () => { setLoading(!loading); setScrollPosition(0)});    
+  
     },[navigation,loading]); 
 
     const getBookmarkedTerms = async ()=> {
@@ -62,6 +69,7 @@ const TermsList = ({ terms , search, navigation }) => {
 
           if (loading) {
             setLoading(false);
+          
           }
             console.log('Got deleted');
     }
@@ -98,16 +106,17 @@ const TermsList = ({ terms , search, navigation }) => {
 
     }
 
-    const Item = ({id, name, description}) => {
+    const Item = ({id, name, description, index}) => {
       
 
       return (
-        <View style={styles.item} key={id} >
+        <View style={styles.item} key={id} index={index} >
             <Text value={name} numberOfLines={2} style={styles.name}>{name}</Text>
             <Text value={description}  style={styles.description}>{description}</Text>
             <View  style={{marginRight:5,marginTop:10,alignItems:'flex-end'}}>
+              {console.log(id)}
             {
-            !bookmarked.includes(id)?<TouchableOpacity onPress={() => {bookmarkIT(name,description,id); setLoading(true)}}><Ionicons name='bookmark-outline' size={27} color='#AD40AF' /></TouchableOpacity>:<TouchableOpacity onPress={() =>{unbookmarkIT(id); setLoading(true)}}><Ionicons name='bookmark-sharp' size={27} color='#AD40AF' /></TouchableOpacity>
+            !bookmarked.includes(id)?<TouchableOpacity onPress={() => {bookmarkIT(name,description,id); setLoading(true); setScrollPosition(index);}}><Ionicons name='bookmark-outline' size={27} color='#AD40AF' /></TouchableOpacity>:<TouchableOpacity onPress={() =>{unbookmarkIT(id); setLoading(true); setScrollPosition(index)}}><Ionicons name='bookmark-sharp' size={27} color='#AD40AF' /></TouchableOpacity>
             } 
                   
             </View>
@@ -118,13 +127,14 @@ const TermsList = ({ terms , search, navigation }) => {
 
    
 
-    const RenderItem = ({ item }) => {
+    const RenderItem = ({ item,index }) => {
 
       if(search === "" || item.name.toString().toUpperCase().includes(search.toString().toUpperCase()))
 
       {
+         console.log(index);
 
-        return <Item  id={item.id} name={item.name} description={item.description}  />;
+        return <Item  id={item.id} name={item.name} description={item.description} index={index}  />;
      
       }
  
@@ -137,22 +147,28 @@ const TermsList = ({ terms , search, navigation }) => {
      </View>
       )
     };
+     if(loading)
+     {
+      return <ActivityIndicator />
+     }
+     else {
 
       return (
         
-        
+ 
           <FlatList
-           
+            initialScrollIndex={scrollPosition}
             data={terms}
-            renderItem={RenderItem}
+            renderItem={loading?<ActivityIndicator />:RenderItem}
             keyExtractor={item => item.id}
             ListEmptyComponent ={NotFound}
     
           />
-          
        
-      );
-}
+       
+      ) };
+      
+      }    
 const styles = StyleSheet.create({
     container: {
       flex: 1,

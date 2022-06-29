@@ -38,7 +38,6 @@ const CustomDrawer = props => {
 }
 
 useEffect(()=>{
-
   getUser();
 },[]);
 

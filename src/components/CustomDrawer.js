@@ -45,31 +45,8 @@ useEffect(()=>{
     <View style={{flex: 1}}>
       <DrawerContentScrollView
         {...props}
-        contentContainerStyle={{backgroundColor: '#34e1eb'}}>
-        <ImageBackground
-          source={require('../assets/images/menu-bg.png')}
-          style={{padding: 20}}>
-          <Image
-            source={require('../assets/images/user-profile.jpg')}
-            style={{height: 80, width: 80, borderRadius: 40, marginBottom: 10}}
-          />
-          <Text
-            style={{
-              color: '#fff',
-              fontSize: 19,
-              fontFamily: 'Roboto-Medium',
-              marginBottom: 5,
-            }}>
-           {userData ? userData.fullname: ''}
-          </Text>
-          <Text style={{
-              color: 'black',
-              fontSize: 15,
-              fontFamily: 'Roboto-Regular',
-              
-            }}>{ userData ? userData.profession:''} </Text>
-    
-        </ImageBackground>
+        contentContainerStyle={{backgroundColor: '#fff'}}>
+
         <View style={{flex: 1, backgroundColor: '#fff', paddingTop: 10}}>
           <DrawerItemList {...props} />
         </View>

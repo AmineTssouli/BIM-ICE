@@ -7,18 +7,17 @@ import CustomButton from '../components/CustomButton';
 
 const ProfileScreen = () => {
   const {user} = useContext(AuthContext);
-  console.log(user.photoURL);
+
   return (
     <SafeAreaView  style={{flex:1,backgroundColor:'#fff',padding:20}} >
     <View style={{flex:1,justifyContent:'center',alignItems:'center',marginBottom:20}}>
-  <Image source={require('../../src/assets/images/user-profile.jpg')} style={{width:80,height:80,borderRadius:25}}/>
-      <Text>{user.displayName}</Text>
+   
   
-     <Text  style={[style.input,{borderColor:'#61CE70'}]} >Fullname {user.displayName}</Text>
-     <Text  style={[style.input,{borderColor:'#61CE70'}]} >Fullname {user.displayName}</Text>
-     <Text  style={[style.input,{borderColor:'#61CE70'}]} >Fullname {user.displayName}</Text>
-     <Text  style={[style.input,{borderColor:'#61CE70'}]} >Fullname {user.displayName}</Text>
-     <Text  style={[style.input,{borderColor:'#61CE70'}]} >Fullname {user.displayName}</Text>
+     <Text  style={[style.input,{borderColor:'#61CE70'}]} >{user.displayName}</Text>
+     <Text  style={[style.input,{borderColor:'#61CE70'}]} > {user.displayName}</Text>
+     <Text  style={[style.input,{borderColor:'#61CE70'}]} > {user.displayName}</Text>
+     <Text  style={[style.input,{borderColor:'#61CE70'}]} > {user.displayName}</Text>
+     <Text  style={[style.input,{borderColor:'#61CE70'}]} > {user.displayName}</Text>
      <CustomButton label={'Update profile'} />
     </View>
     </SafeAreaView>

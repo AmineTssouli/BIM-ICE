@@ -62,10 +62,12 @@ const SignupScreen = ({ navigation }) => {
   
     register(email,password,checked,fullname);
    
-      if (err)
+      if (err.length != 0)
       {
-        handleError(err,"email");
-        console.log("from signup screen",err)
+        
+        
+        console.log(err.message,err.input);
+        handleError(err.message,err.input);
       }
       
 

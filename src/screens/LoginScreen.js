@@ -1,26 +1,36 @@
-import { View, Text ,SafeAreaView,TouchableOpacity,ImageBackground, Keyboard} from 'react-native';
+import { View,TextInput, Text ,SafeAreaView,TouchableOpacity,ImageBackground, Keyboard,Alert} from 'react-native';
+import { CheckBox } from "@rneui/themed";
 import React, { useContext, useState } from 'react';
 import CustomButton from '../components/CustomButton';
 import CustomInput from '../components/CustomInput';
+import NewCustomInput from '../components/NewCustomInput';
 import Google from '../assets/images/misc/google.svg';
 import Facebook from '../assets/images/misc/facebook.svg';
 import Apple from '../assets/images/misc/apple.svg';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import Entypo from 'react-native-vector-icons/Entypo'
 import {AuthContext} from '../navigation/AuthProvider';
+import auth from '@react-native-firebase/auth';
 
 
 const LoginScreen = ( { navigation }) => {
   const [email,setEmail] = useState();
   const [password,setPassword] = useState();
-  const {login} = useContext(AuthContext);
+  const [isSelected, setSelection] = useState(true);
+  const {login, user} = useContext(AuthContext);
+
   const [inputs,setInputs] = useState({
   email :'',
   password:'',
   });
   const [errors,setErrors] = useState({});
+  
 
-  const validate = () => {
+  const validate =  () => {
+   
    Keyboard.dismiss();
    let valid= true;
+   
    if (! inputs.email)
    {
     handleError("Please provide your email address","email");
@@ -39,9 +49,13 @@ const LoginScreen = ( { navigation }) => {
 
    }
    if (valid) {
-    login(email,password);
-   }
+       
+      login(email,password);  
+
+    }
+
   };
+
   const handleOnChange = (text,input) => {
     setInputs(prevState =>({...prevState,[input]:text}));
     if (input == 'email') {
@@ -59,23 +73,46 @@ const LoginScreen = ( { navigation }) => {
   }
 
   return (
-    <SafeAreaView  style= {{ flex:1,
+    <SafeAreaView  style= {{ 
+      flex:1,
       justifyContent:'center',
       alignItems:'center',
       backgroundColor:'#fff',
       
    
       }}>
-        <View>
-      <ImageBackground source={require('../../src/assets/images/logo.png')} style={{ marginTop:10,width:200,height:200}}  />
+        <View style={{marginTop:10,marginBottom:30}}>
+      <ImageBackground source={require('../../src/assets/images/logo.png')} style={{width:200,height:200}}  />
+      <Text style={{textAlign:'center',marginTop:10,fontSize:30, fontWeight:'bold', color:'#20315f',fontFamily:'Inter-Bold' }}>Login</Text>
       </View>
-      <Text style={{marginTop:10,marginBottom:50,fontSize:30, fontWeight:'bold', color:'#20315f',fontFamily:'Inter-Bold' }}>Login</Text>
 
-      <View style={{width:'80%',fontFamily:'Roboto-Regular'}}>  
-         <CustomInput placeholder ='Email' inputType='email-address' onChangeText={text => { handleOnChange(text,'email')}} onFocus= {() => { handleError(null,'email')}} error={errors.email}/>
-         <CustomInput placeholder ='Password'  secure={true}  onChangeText={text => { handleOnChange(text,'password')}} onFocus= {() => { handleError(null,'password')}}  error={errors.password} />
+      <View style={{width:'80%',fontFamily:'Roboto-Regular',}}>  
+         <NewCustomInput  placeholder ='Email' keyboardType='email-address' inputType='email-address' onChangeText={text => { handleOnChange(text,'email')}} onFocus= {() => { handleError(null,'email')}} error={errors.email}/>
+         <NewCustomInput  placeholder ='Password' handleOnChange ={ (text) => { handleOnChange(text,'password')}} onFocus= {() => { handleError(null,'password')}} error={errors.password}/>
 
+         
+     {/*     <View style={{}}>
+         <CustomInput  placeholder ='Password'  secure={true}  onChangeText={text => { handleOnChange(text,'password')}} onFocus= {() => { handleError(null,'password')}}  error={errors.password} />
+         
+         </View> */}
+          <View style={{flexDirection:'row',justifyContent:'space-between',marginBottom:15}}>
+          <CheckBox
+          checkedColor='#61CE70'
+          containerStyle={{padding:0,margin:0}}
+          title={'Remember me'}
+        textStyle={{color:'#20315f'}}
+            checked={isSelected}
+            onPress={() => setSelection(!isSelected)}
+            
+            
+          />
+        
+          <TouchableOpacity onPress={() => { navigation.navigate('Reset')}}>
+            <Text style={{color:'#61CE70',fontWeight:'700'}}>Forgot Password ? </Text>
+          </TouchableOpacity>
+          </View>
         </View>
+
         <CustomButton label='Login' onPress={ validate } />
         <Text>or, login with ...</Text>
         <View style= {{flexDirection:'row',marginTop:20,marginBottom:20}}>

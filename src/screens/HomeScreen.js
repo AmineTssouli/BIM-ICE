@@ -21,7 +21,7 @@ const HomeScreen = ({ navigation })=> {
     const updateSearch = (value) => {
             
             setSearch(value);
-            console.log(value);                 
+                     
         
     }
 
@@ -36,8 +36,8 @@ const getUser =  async () => {
       .then((querySnapshot) => {
          if (querySnapshot.exists)
          {
-            console.log("user data",userData);
-            setUserData(querySnapshot.read());
+            
+            setUserData(querySnapshot.data());
          }
 
        

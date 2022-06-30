@@ -46,7 +46,7 @@ const TermsList = ({ terms , search, navigation }) => {
         if (loading) {
           setLoading(false);
         }
-       console.log(bookmarked)
+      
      
        
        
@@ -71,7 +71,7 @@ const TermsList = ({ terms , search, navigation }) => {
             setLoading(false);
           
           }
-            console.log('Got deleted');
+           
     }
     catch(e) {
     console.log(e);
@@ -96,7 +96,7 @@ const TermsList = ({ terms , search, navigation }) => {
           if (loading) {
             setLoading(false);
           }
-            console.log('Bookmarked it!');
+           
         });
     }
     catch(e) {
@@ -114,7 +114,7 @@ const TermsList = ({ terms , search, navigation }) => {
             <Text value={name} numberOfLines={2} style={styles.name}>{name}</Text>
             <Text value={description}  style={styles.description}>{description}</Text>
             <View  style={{marginRight:5,marginTop:10,alignItems:'flex-end'}}>
-              {console.log(id)}
+             
             {
             !bookmarked.includes(id)?<TouchableOpacity onPress={() => {bookmarkIT(name,description,id); setLoading(true); setScrollPosition(index);}}><Ionicons name='bookmark-outline' size={27} color='#AD40AF' /></TouchableOpacity>:<TouchableOpacity onPress={() =>{unbookmarkIT(id); setLoading(true); setScrollPosition(index)}}><Ionicons name='bookmark-sharp' size={27} color='#AD40AF' /></TouchableOpacity>
             } 
@@ -132,7 +132,7 @@ const TermsList = ({ terms , search, navigation }) => {
       if(search === "" || item.name.toString().toUpperCase().includes(search.toString().toUpperCase()))
 
       {
-         console.log(index);
+        
 
         return <Item  id={item.id} name={item.name} description={item.description} index={index}  />;
      

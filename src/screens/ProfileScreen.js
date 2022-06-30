@@ -13,11 +13,11 @@ const ProfileScreen = () => {
     <View style={{flex:1,justifyContent:'center',alignItems:'center',marginBottom:20}}>
    
   
-     <Text  style={[style.input,{borderColor:'#61CE70'}]} >{user.displayName}</Text>
-     <Text  style={[style.input,{borderColor:'#61CE70'}]} > {user.displayName}</Text>
-     <Text  style={[style.input,{borderColor:'#61CE70'}]} > {user.displayName}</Text>
-     <Text  style={[style.input,{borderColor:'#61CE70'}]} > {user.displayName}</Text>
-     <Text  style={[style.input,{borderColor:'#61CE70'}]} > {user.displayName}</Text>
+     <Text  style={[style.input,{borderColor:'#61CE70'}]} ></Text>
+     <Text  style={[style.input,{borderColor:'#61CE70'}]} > </Text>
+     <Text  style={[style.input,{borderColor:'#61CE70'}]} > </Text>
+     <Text  style={[style.input,{borderColor:'#61CE70'}]} > </Text>
+     <Text  style={[style.input,{borderColor:'#61CE70'}]} > </Text>
      <CustomButton label={'Update profile'} />
     </View>
     </SafeAreaView>
@@ -25,7 +25,7 @@ const ProfileScreen = () => {
 }
 const style = StyleSheet.create({
   input : {paddingLeft:5,marginBottom:10,borderBottomWidth:1,fontSize:16,fontFamily:'Roboto-Regular'},
-  error:{color:'red',fontSize:12,marginLeft:10,marginTop:-10}
+  error:{color:'red',fontSize:12,marginLeft:25,marginTop:-10}
 
 });
 

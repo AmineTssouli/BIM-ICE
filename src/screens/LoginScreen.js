@@ -3,7 +3,6 @@ import { CheckBox } from "@rneui/themed";
 import React, { useContext, useState } from 'react';
 import CustomButton from '../components/CustomButton';
 import CustomInput from '../components/CustomInput';
-import NewCustomInput from '../components/NewCustomInput';
 import Google from '../assets/images/misc/google.svg';
 import Facebook from '../assets/images/misc/facebook.svg';
 import Apple from '../assets/images/misc/apple.svg';
@@ -87,14 +86,9 @@ const LoginScreen = ( { navigation }) => {
       </View>
 
       <View style={{width:'80%',fontFamily:'Roboto-Regular',}}>  
-         <NewCustomInput  placeholder ='Email' keyboardType='email-address' inputType='email-address' onChangeText={text => { handleOnChange(text,'email')}} onFocus= {() => { handleError(null,'email')}} error={errors.email}/>
-         <NewCustomInput  placeholder ='Password' handleOnChange ={ (text) => { handleOnChange(text,'password')}} onFocus= {() => { handleError(null,'password')}} error={errors.password}/>
+         <CustomInput icon='email'  placeholder ='Email' keyboardType='email-address' inputType='email-address' onChangeText={text => { handleOnChange(text,'email')}} onFocus= {() => { handleError(null,'email')}} error={errors.email}/>
+         <CustomInput icon='lock'  placeholder ='Password' handleOnChange ={ (text) => { handleOnChange(text,'password')}} onFocus= {() => { handleError(null,'password')}} error={errors.password} extraicon={true}/>
 
-         
-     {/*     <View style={{}}>
-         <CustomInput  placeholder ='Password'  secure={true}  onChangeText={text => { handleOnChange(text,'password')}} onFocus= {() => { handleError(null,'password')}}  error={errors.password} />
-         
-         </View> */}
           <View style={{flexDirection:'row',justifyContent:'space-between',marginBottom:15}}>
           <CheckBox
           checkedColor='#61CE70'

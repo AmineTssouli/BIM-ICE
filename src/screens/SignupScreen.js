@@ -155,10 +155,10 @@ const SignupScreen = ({ navigation }) => {
          <CustomRadiobutton value='Student' status={ checked === 'Student' ? 'checked' : 'unchecked' }  onPress={() => setChecked('Student')} />
          <CustomRadiobutton value='Teacher' status={ checked === 'Teacher' ? 'checked' : 'unchecked' }  onPress={() => setChecked('Teacher')} />
          </View>
-         <CustomInput placeholder ='Email' inputType='email-address'  onChangeText={text => { handleOnChange(text,'email')}} onFocus= {() => { handleError(null,'email')}}  error={errors.email}  />
-         <CustomInput placeholder ='Password'  secure={true} onChangeText={text => { handleOnChange(text,'password')}} onFocus= {() => { handleError(null,'password')}}  error={errors.password}  />
-         <CustomInput placeholder ='Confirm password'  secure={true} onChangeText={text => { handleOnChange(text,'confirmPassword')}} onFocus= {() => { handleError(null,'confirmPassword')}}  error={errors.confirmPassword}  />
-         <CustomInput placeholder ='Full name' onChangeText={text => { handleOnChange(text,'fullname')}} onFocus= {() => { handleError(null,'fullname')}}  error={errors.fullname} />
+         <CustomInput icon='email' placeholder ='Email' inputType='email-address'  onChangeText={text => { handleOnChange(text,'email')}} onFocus= {() => { handleError(null,'email')}}  error={errors.email}  />
+         <CustomInput icon='lock'placeholder ='Password'  secure={true} onChangeText={text => { handleOnChange(text,'password')}} onFocus= {() => { handleError(null,'password')}}  error={errors.password}  />
+         <CustomInput icon='lock' placeholder ='Confirm password'  secure={true} onChangeText={text => { handleOnChange(text,'confirmPassword')}} onFocus= {() => { handleError(null,'confirmPassword')}}  error={errors.confirmPassword}  />
+         <CustomInput icon='user' placeholder ='Full name' onChangeText={text => { handleOnChange(text,'fullname')}} onFocus= {() => { handleError(null,'fullname')}}  error={errors.fullname} />
          
           
           <Text style={{marginBottom:30,marginTop:10,fontWeight:'bold',color:'gray',fontSize:12}}>By clicking Sign up, you agree to our terms and conditions </Text>

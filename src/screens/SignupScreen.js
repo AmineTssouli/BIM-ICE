@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react'
 import CustomButton from '../components/CustomButton';
 import CustomRadiobutton from '../components/CustomRadiobutton';
 import CustomInput from '../components/CustomInput';
+import { CheckBox } from "@rneui/themed";
 import Google from '../assets/images/misc/google.svg';
 import Facebook from '../assets/images/misc/facebook.svg';
 import Apple from '../assets/images/misc/apple.svg';
@@ -160,8 +161,16 @@ const SignupScreen = ({ navigation }) => {
          <CustomInput icon='lock' placeholder ='Confirm password'  secure={true} onChangeText={text => { handleOnChange(text,'confirmPassword')}} onFocus= {() => { handleError(null,'confirmPassword')}}  error={errors.confirmPassword}  />
          <CustomInput icon='user' placeholder ='Full name' onChangeText={text => { handleOnChange(text,'fullname')}} onFocus= {() => { handleError(null,'fullname')}}  error={errors.fullname} />
          
-          
-          <Text style={{marginBottom:30,marginTop:10,fontWeight:'bold',color:'gray',fontSize:12}}>By clicking Sign up, you agree to our terms and conditions </Text>
+         <CheckBox
+         disabled 
+          checkedColor='#61CE70'
+          containerStyle={{marginBottom:30,marginTop:10}}
+          title={'By clicking Sign up, you agree to our terms and conditions'}
+        textStyle={{color:'gray',fontSize:12}}
+            checked={true}
+            
+          />
+         
        
         </View>
         <CustomButton label='Sign up' onPress={ validate } />

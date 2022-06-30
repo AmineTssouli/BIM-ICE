@@ -107,6 +107,14 @@ export const AuthProvider = ({  children  }) => {
                console.log(e);
            }
         }, 
+         resetpassword : async (email) => {
+           try {
+            await auth().sendPasswordResetEmail(email);            
+           } catch (error) {
+            console.log(error.message)
+            
+           }
+         }
        
         }} >
             { children }

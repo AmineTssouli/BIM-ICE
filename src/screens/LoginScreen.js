@@ -85,7 +85,7 @@ const LoginScreen = ( { navigation }) => {
       <Text style={{textAlign:'center',marginTop:10,fontSize:30, fontWeight:'bold', color:'#20315f',fontFamily:'Inter-Bold' }}>Login</Text>
       </View>
 
-      <View style={{width:'80%',fontFamily:'Roboto-Regular',}}>  
+      <View style={{width:'80%'}}>  
          <CustomInput icon='email'  placeholder ='Email' keyboardType='email-address' inputType='email-address' onChangeText={text => { handleOnChange(text,'email')}} onFocus= {() => { handleError(null,'email')}} error={errors.email}/>
          <CustomInput icon='lock'  placeholder ='Password' handleOnChange ={ (text) => { handleOnChange(text,'password')}} onFocus= {() => { handleError(null,'password')}} error={errors.password} extraicon={true}/>
 
@@ -101,7 +101,7 @@ const LoginScreen = ( { navigation }) => {
             
           />
         
-          <TouchableOpacity onPress={() => { navigation.navigate('Reset')}}>
+          <TouchableOpacity onPress={() => { navigation.navigate('Resetpassword')}}>
             <Text style={{color:'#61CE70',fontWeight:'700'}}>Forgot Password ? </Text>
           </TouchableOpacity>
           </View>

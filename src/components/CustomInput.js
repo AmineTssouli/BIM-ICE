@@ -31,7 +31,7 @@ const CustomInput = ({inputType,secure,placeholder,error,handleOnChange,handleEr
 
             />
               { extraicon &&<TouchableOpacity onPress={()=>{setSecured(!secured)}}>
-            <Entypo style={{margin:10}} name={ secured ? "eye-with-line" : "eye" } size={24} color='#61CE70'  /> 
+            <Entypo style={{margin:10}} name={ secured ? "eye" : "eye-with-line" } size={24} color='#61CE70'  /> 
             </TouchableOpacity>}
             </View>
             {error && <Text style={style.error}>{error}</Text>}

@@ -6,10 +6,12 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {AuthContext} from '../navigation/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
 import TermsList from '../components/TermsList';
+import ThemeContext from "../utils/ThemeContext";
 
 
 const HomeScreen = ({ navigation })=> {
     const {user} = useContext(AuthContext);
+    const  theme = useContext(ThemeContext);
     const [allTerms,setAllTerms] = useState([]);
     const [border,setBorder] = useState('#C6C6C6');
     const [clicked,setClicked] = useState(false);
@@ -95,14 +97,9 @@ const getAllTerms =  async () => {
 
 
     return(
-    <SafeAreaView  style={{flex:1,backgroundColor:'#fff',padding:20}} >
-        
-{/*        <View style={{flexDirection:'row',justifyContent:'space-between',marginBottom:20}}>
-       <Text style={{fontSize:16, fontFamily:'Roboto-Bold'}}>Hello {user.displayName}</Text>
-    <TouchableOpacity onPress={()=>navigation.openDrawer()} >
-    <ImageBackground source={require('../../src/assets/images/user-profile.jpg')} style={{width:35,height:35}} imageStyle={{borderRadius:25}} />
-        </TouchableOpacity>
-        </View> */}
+    <SafeAreaView  style={{flex:1,backgroundColor:theme.backgroundcolor,padding:20}} >
+       
+
  
       <View style={{
             flexDirection:'row',
@@ -112,7 +109,7 @@ const getAllTerms =  async () => {
             paddingHorizontal:10,
             paddingVertical:8}} >
             <Feather name='search' size={22} color='#C6C6C6' style={{marginRight:5,marginTop:3}} />
-            <TextInput placeholder="Type here to search" style={{flex:1, padding:0}}
+            <TextInput placeholderTextColor='gray' placeholder="Type here to search" style={{flex:1, padding:0, color:theme.textcolor}}
             value={search}
             onChangeText= {(value)=>updateSearch(value)}
             onBlur ={()=> {setClicked(false); setBorder('#C6C6C6'); }}
@@ -130,7 +127,7 @@ const getAllTerms =  async () => {
             flexDirection:'row',
             justifyContent:'space-between'
         }}>
-            <Text style={{fontSize:16,fontFamily:'Roboto-Bold'}}>Most searched terms</Text>
+            <Text style={{fontSize:16,fontFamily:'Roboto-Bold',color:'gray'}}>Most searched terms</Text>
         <TouchableOpacity>
             <Text style={{color:'#AD40AF'}}>See all</Text>
         </TouchableOpacity>

@@ -10,9 +10,11 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Entypo from 'react-native-vector-icons/Entypo'
 import {AuthContext} from '../navigation/AuthProvider';
 import auth from '@react-native-firebase/auth';
+import ThemeContext from "../utils/ThemeContext";
 
 
 const LoginScreen = ( { navigation }) => {
+  const theme =useContext(ThemeContext);
   const [email,setEmail] = useState();
   const [password,setPassword] = useState();
   const [isSelected, setSelection] = useState(true);
@@ -34,6 +36,7 @@ const LoginScreen = ( { navigation }) => {
    {
     handleError("Please provide your email address","email");
     valid = false;
+    return;
    }
    if (! inputs.email.match(/\S+@\S+\.\S+/))
    {
@@ -76,25 +79,25 @@ const LoginScreen = ( { navigation }) => {
       flex:1,
       justifyContent:'center',
       alignItems:'center',
-      backgroundColor:'#fff',
+      backgroundColor: theme.backgroundcolor,
       
    
       }}>
         <View style={{marginTop:10,marginBottom:30}}>
       <ImageBackground source={require('../../src/assets/images/logo.png')} style={{width:200,height:200}}  />
-      <Text style={{textAlign:'center',marginTop:10,fontSize:30, fontWeight:'bold', color:'#20315f',fontFamily:'Inter-Bold' }}>Login</Text>
+      <Text style={{textAlign:'center',marginTop:10,fontSize:30, fontWeight:'bold', color:theme.textcolor,fontFamily:'Inter-Bold' }}>Login</Text>
       </View>
 
       <View style={{width:'80%'}}>  
-         <CustomInput icon='email'  placeholder ='Email' keyboardType='email-address' inputType='email-address' onChangeText={text => { handleOnChange(text,'email')}} onFocus= {() => { handleError(null,'email')}} error={errors.email}/>
-         <CustomInput icon='lock'  placeholder ='Password' handleOnChange ={ (text) => { handleOnChange(text,'password')}} onFocus= {() => { handleError(null,'password')}} error={errors.password} extraicon={true}/>
+         <CustomInput  icon='email' value={email}  placeholder ='Email' keyboardType='email-address' inputType='email-address' onChangeText={text => { handleOnChange(text,'email')}} onFocus= {() => { handleError(null,'email')}} error={errors.email}/>
+         <CustomInput icon='lock'  value={password} placeholder ='Password' handleOnChange ={ (text) => { handleOnChange(text,'password')}} onFocus= {() => { handleError(null,'password')}} error={errors.password} extraicon={true}/>
 
           <View style={{flexDirection:'row',justifyContent:'space-between',marginBottom:15}}>
           <CheckBox
           checkedColor='#61CE70'
-          containerStyle={{padding:0,margin:0}}
+          containerStyle={{padding:0,margin:0,backgroundColor:theme.backgroundcolor}}
           title={'Remember me'}
-        textStyle={{color:'#20315f'}}
+        textStyle={{color: theme.textcolor}}
             checked={isSelected}
             onPress={() => setSelection(!isSelected)}
             
@@ -108,12 +111,12 @@ const LoginScreen = ( { navigation }) => {
         </View>
 
         <CustomButton label='Login' onPress={ validate } />
-        <Text>or, login with ...</Text>
+        <Text style={{color:theme.textcolor}}>or, login with ...</Text>
         <View style= {{flexDirection:'row',marginTop:20,marginBottom:20}}>
               <TouchableOpacity
                   onPress={()=>{}}
                   style= {{
-                    borderColor:'#ddd',
+                    borderColor:theme.borderColor,
                     borderWidth:2,
                     borderRadius:10,
                     paddingHorizontal:30,
@@ -126,7 +129,7 @@ const LoginScreen = ( { navigation }) => {
             <TouchableOpacity
                 onPress={()=>{}}
                 style= {{
-                  borderColor:'#ddd',
+                  borderColor:theme.borderColor,
                   borderWidth:2,
                   borderRadius:10,
                   paddingHorizontal:30,
@@ -139,7 +142,7 @@ const LoginScreen = ( { navigation }) => {
             <TouchableOpacity
                 onPress={()=>{}}
                 style= {{
-                  borderColor:'#ddd',
+                  borderColor:theme.borderColor,
                   borderWidth:2,
                   borderRadius:10,
                   paddingHorizontal:30,
@@ -147,11 +150,11 @@ const LoginScreen = ( { navigation }) => {
                   marginLeft:30
                 }}
                 >
-          <Apple height={24} width={24} />
+          <Apple height={24} width={24} color={theme.applecolor} />
             </TouchableOpacity>
         </View>
         <View style={{flexDirection:'row',justifyContent:'center',marginBottom:30}}>
-        <Text>New to the app? </Text>
+        <Text style={{color:theme.textcolor}}>New to the app? </Text>
         <TouchableOpacity onPress={() => { navigation.navigate('Signup')}}>
           <Text style={{color:'#61CE70',fontWeight:'700'}}>Register</Text>
         </TouchableOpacity>

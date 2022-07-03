@@ -1,14 +1,16 @@
 import { View, Text ,SafeAreaView,TouchableOpacity,ImageBackground } from 'react-native';
-import React from 'react';
+import React,{useContext} from 'react';
+import ThemeContext from "../utils/ThemeContext";
 
 const LandingScreen = ( { navigation } ) => {
+  const theme = useContext(ThemeContext);
   return (
 
     <SafeAreaView style={{
         flex:1,
         justifyContent:'center',
         alignItems:'center',
-        backgroundColor:'#fff',
+        backgroundColor: theme.backgroundcolor,
         }}>
           <View>
             <ImageBackground source={require('../../src/assets/images/logo.png')} style={{ marginTop:20,width:200,height:200,top:20}} imageStyle={{borderRadius:25}} />

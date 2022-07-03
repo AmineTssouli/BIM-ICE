@@ -3,21 +3,17 @@ import React,{useContext} from 'react'
 import {AuthContext} from '../navigation/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
 import CustomButton from '../components/CustomButton';
+import ThemeContext from "../utils/ThemeContext";
+
 
 
 const ProfileScreen = () => {
+  const theme = useContext(ThemeContext);
   const {user} = useContext(AuthContext);
 
   return (
-    <SafeAreaView  style={{flex:1,backgroundColor:'#fff',padding:20}} >
+    <SafeAreaView  style={{flex:1,backgroundColor:theme.backgroundcolor,padding:20}} >
     <View style={{flex:1,justifyContent:'center',alignItems:'center',marginBottom:20}}>
-   
-  
-     <Text  style={[style.input,{borderColor:'#61CE70'}]} ></Text>
-     <Text  style={[style.input,{borderColor:'#61CE70'}]} > </Text>
-     <Text  style={[style.input,{borderColor:'#61CE70'}]} > </Text>
-     <Text  style={[style.input,{borderColor:'#61CE70'}]} > </Text>
-     <Text  style={[style.input,{borderColor:'#61CE70'}]} > </Text>
      <CustomButton label={'Update profile'} />
     </View>
     </SafeAreaView>

@@ -30,7 +30,15 @@ export const AuthProvider = ({  children  }) => {
                 
               
                 catch(error) {
+                  if(Platform.OS === 'ios')
+                  {
+                  Alert.prompt("Connection failed","Wrong  Email or Password, please try again!");
+
+
+                  }else {
                   Alert.alert("Connection failed","Wrong  Email or Password, please try again!");
+
+                  }
 
                   setErr({
                     message :'Wrong  Email or password, please try again!',

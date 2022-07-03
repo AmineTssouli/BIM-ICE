@@ -4,8 +4,23 @@ import { NavigationContainer } from '@react-navigation/native';
 import { AuthProvider , AuthContext } from './src/navigation/AuthProvider';
 import AuthStack from './src/navigation/AuthStack';
 import AppStack from './src/navigation/AppStack';
+import ThemeContext from './src/utils/ThemeContext';
+import { Appearance } from 'react-native';
+
+
+import theme from './src/utils/theme';
+
 
 const Router = () => {
+  // detecting the user current theme and display the app accordingly
+  const [mode,setMode] = useState(Appearance.getColorScheme());
+
+  Appearance.addChangeListener((scheme)=>{
+  setMode(scheme.colorScheme);
+  })
+ 
+
+
   // Set an initializing state whilst Firebase connects
 
   const {user, setUser} = useContext(AuthContext);
@@ -26,18 +41,20 @@ const Router = () => {
 
 
   return (
-    <NavigationContainer>
+    <ThemeContext.Provider value ={ mode === 'light' ? theme.light : theme.dark}>
+    <NavigationContainer >
       { user ? <AppStack />:<AuthStack /> } 
     </NavigationContainer>
+    </ThemeContext.Provider>
   );
 };
 
 const App = () => {
   return(
     <AuthProvider>
-      
-      <Router />
-   
+       
+          <Router />
+     
     </AuthProvider>
   );
 

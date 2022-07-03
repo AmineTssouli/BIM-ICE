@@ -1,54 +1,56 @@
 import { View, Text,SafeAreaView ,TouchableOpacity, Linking} from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
 import Facebook from '../assets/images/misc/facebook.svg';
 import Instagram from '../assets/images/misc/instagram.svg';
 import Website from '../assets/images/misc/website.svg';
+import ThemeContext from "../utils/ThemeContext";
 
 
 
 const AboutScreen = () => {
+  const theme = useContext(ThemeContext);
   return (
     
-    <SafeAreaView  style={{flex:1,backgroundColor:'#fff',padding:30}} >
+    <SafeAreaView  style={{flex:1,backgroundColor: theme.backgroundcolor,padding:30}} >
      <View style={{marginTop:-12}}>
       <Text style={{
-              color: 'black',
+              color: theme.about_color,
               fontSize: 20,
               fontFamily: 'Roboto-Medium',
               
             }}>What is BIM-ICE</Text>
      </View>
      <View style={{marginVertical:20}}>
-      <Text style={{textAlign:'justify',fontFamily: 'Roboto-Medium',}}>
+      <Text style={{textAlign:'justify',fontFamily: 'Roboto-Medium',color:theme.textcolor}}>
       BIM ICE Project standing for “BIM Integration in Higher and Continuing Education” seeks to accelerate BIM implementation in the field of construction and building design in Finland and Russia. Addressing such topical issues as lack of common terminology in the field and development phase of standardization,  lack of technical know-how and lack of competence in process development, the Project is aimed at improving productivity and quality within the construction industry by developing new training models and increasing the level of education among different target groups.</Text>
      </View>
      <View>
       <Text style={{
-              color: 'black',
+              color: theme.about_color,
               fontSize: 20,
               fontFamily: 'Roboto-Medium',
               
             }}>Project Manager</Text>
      </View>
      <View style={{marginVertical:5}}>
-     <Text style={{textAlign:'justify',fontWeight:'900',fontFamily: 'Roboto-Medium',marginVertical:10}}>Eliisa Punttila</Text>
-     <Text style={{textAlign:'justify',fontFamily: 'Roboto-Medium'}}>eliisa.punttila@lab.fi</Text>
+     <Text style={{textAlign:'justify',fontWeight:'900',fontFamily: 'Roboto-Medium',marginVertical:10,color:theme.textcolor}}>Eliisa Punttila</Text>
+     <Text style={{textAlign:'justify',fontFamily: 'Roboto-Medium',color:theme.textcolor}}>eliisa.punttila@lab.fi</Text>
      </View>
      <View style={{marginTop:10}}>
       <Text style={{
-              color: 'black',
+              color: theme.about_color,
               fontSize: 20,
               fontFamily: 'Roboto-Medium',
               
             }}>Communication Manager</Text>
      </View>
      <View style={{marginVertical:5,}}>
-     <Text style={{textAlign:'justify',fontWeight:'900',fontFamily: 'Roboto-Medium',marginVertical:10}}>Anna-Riitta Pettinen</Text>
-     <Text style={{textAlign:'justify',fontFamily: 'Roboto-Medium'}}>anna-riitta.pettinen@lab.fi</Text>
+     <Text style={{textAlign:'justify',fontWeight:'900',fontFamily: 'Roboto-Medium',marginVertical:10,color:theme.textcolor}}>Anna-Riitta Pettinen</Text>
+     <Text style={{textAlign:'justify',fontFamily: 'Roboto-Medium',color:theme.textcolor}}>anna-riitta.pettinen@lab.fi</Text>
      </View>
      <View style={{borderTopColor:'#61CE70',borderTopWidth:2,marginTop:20}}>
       <Text style={{marginTop:6,   fontSize: 14,
-              fontFamily: 'Roboto-Italic'}}>Join our Community and Follow us</Text>
+              fontFamily: 'Roboto-Italic',color:'gray'}}>Join our Community and Follow us</Text>
      </View>
      <View style= {{flexDirection:'row',margin:20,justifyContent:'space-between'}}>
 
@@ -70,7 +72,7 @@ const AboutScreen = () => {
                 }}
     
                 >
-          <Website height={50} width={50} />
+          <Website height={50} width={50}   fill={theme.about_color}  />
             </TouchableOpacity>
             <TouchableOpacity
                 onPress={()=>{

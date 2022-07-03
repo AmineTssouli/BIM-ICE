@@ -1,6 +1,6 @@
 import Animated from 'react-native-reanimated';
-import React from 'react'
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import React,{useContext} from 'react'
+import { createDrawerNavigator, } from '@react-navigation/drawer';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
@@ -9,22 +9,24 @@ import BookmarksScreen from '../screens/BookmarksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import AboutScreen from '../screens/AboutScreen';
 import CustomDrawer from '../components/CustomDrawer';
+import ThemeContext from "../utils/ThemeContext";
 
 
 
 const Drawer = createDrawerNavigator();
 const AppStack = () => {
+  const  theme = useContext(ThemeContext);
 
 
   return (
-    <Drawer.Navigator drawerContent={(props) => <CustomDrawer {...props}  />}
+    <Drawer.Navigator  drawerContent={(props) => <CustomDrawer {...props}  />}
     screenOptions={{ drawerActiveBackgroundColor:'#AD40AF',
     headerTitleAlign:'center',
     headerTintColor:'#fff',
      headerStyle:{backgroundColor:'#AD40AF'},
-    drawerActiveTintColor:'#fff',
-    drawerInactiveTintColor:'#333',drawerLabelStyle:{marginLeft:-25,fontFamily:'Roboto-Medium',fontSize:15
-   
+    drawerActiveTintColor:theme.icon_activecolor,
+    drawerInactiveTintColor:theme.icon_inactivecolor,
+    drawerLabelStyle:{marginLeft:-25,fontFamily:'Roboto-Medium',fontSize:15
     }
     }}>
       <Drawer.Screen component={HomeScreen} name='Home'  options={{

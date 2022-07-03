@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import {
   SafeAreaView,
   Text,
@@ -7,18 +7,20 @@ import {
 } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import IceImg from '../assets/images/misc/Ice.svg';
+import ThemeContext from "../utils/ThemeContext";
 
 
 const OnboardingScreen = ({ navigation }) => {
+  const theme = useContext(ThemeContext);
     return (
       <SafeAreaView style={{
         flex:1,
         justifyContent:'center',
         alignItems:'center',
-        backgroundColor:'#fff',
+        backgroundColor: theme.backgroundcolor,
         }}>
           <View>
-            <Text style={{marginTop:20,fontSize:40, fontWeight:'bold', color:'#20315f',fontFamily:'Inter-Bold'}}>BIM-ICE </Text>
+            <Text style={{marginTop:20,fontSize:40, fontWeight:'bold', color:theme.textcolor,fontFamily:'Inter-Bold'}}>BIM-ICE </Text>
         </View>
         <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
         <IceImg width={200} height={200} style={{transform:[{rotate:'-15deg'}]}} />

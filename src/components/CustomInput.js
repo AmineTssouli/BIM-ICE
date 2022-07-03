@@ -1,10 +1,12 @@
 import { View, Text,TextInput,StyleSheet,TouchableOpacity } from 'react-native'
-import React,{useState} from 'react'
+import React,{useContext, useState} from 'react'
 import Entypo from 'react-native-vector-icons/Entypo';
+import ThemeContext from '../utils/ThemeContext';
 
 const CustomInput = ({inputType,secure,placeholder,error,handleOnChange,handleError,extraicon,icon, ...props}) => {
 
     const [secured,setSecured] = useState(true);
+    const theme = useContext(ThemeContext);
 
   return (
  
@@ -21,7 +23,8 @@ const CustomInput = ({inputType,secure,placeholder,error,handleOnChange,handleEr
 
             <TextInput
             placeholder={placeholder}
-            style={style.input}
+            style={[style.input,{color:theme.textcolor}]}
+            placeholderTextColor='gray'
             keyboardType={inputType?'email-address':'default'}
             secureTextEntry={secured?true:false} 
             autoCapitalize ='none'
@@ -30,6 +33,7 @@ const CustomInput = ({inputType,secure,placeholder,error,handleOnChange,handleEr
             {...props}
 
             />
+            {console.log(theme.textcolor)}
               { extraicon &&<TouchableOpacity onPress={()=>{setSecured(!secured)}}>
             <Entypo style={{margin:10}} name={ secured ? "eye" : "eye-with-line" } size={24} color='#61CE70'  /> 
             </TouchableOpacity>}
